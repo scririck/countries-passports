@@ -1,0 +1,24 @@
+.map-container{
+    aspect-ratio: 2000/857;
+    width: 100%;
+    height: calc(100vw * 857 / 2000);
+    background-color: #151515;
+    position: relative;
+    svg{
+        max-width: 100%;
+        max-height: 100%;
+        path{
+            cursor:pointer;
+            // fill:yellow;
+        }
+    }
+    .map-label{
+        user-select: none;
+        background-color: #222222;
+        color: white;
+        padding: .5rem;
+        position: fixed;
+        z-index: 100;
+        font-size: 1rem;
+    }
+}
