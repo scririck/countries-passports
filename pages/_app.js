@@ -8,15 +8,19 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
 
+  const MenuVoice = ({route, title}) => (
+    <div className={`mh-voice ${router.route === `/${route}` ? 'active' : ''}`} onClick={()=>{
+      router.push(`/${route}`) 
+    }}>{title}
+  </div>
+  )
+
   return (
     <ContextProvider>
       <div className="mega-header">
-        <div className={`mh-voice ${router.route.includes('ranks')? '' : 'active'}`} onClick={()=>{
-          router.push('/') 
-        }}>Home</div>
-        <div className={`mh-voice ${router.route.includes('ranks')? 'active' : ''}`} onClick={()=>{
-          router.push('/ranks')
-        }}>Ranks</div>
+        <MenuVoice route="" title="Home" />
+        <MenuVoice route="ranks" title="Ranks" />
+        <MenuVoice route="combo" title="Partners" />
       </div>
       <div className="mh-separator"></div>
       <Component {...pageProps} />

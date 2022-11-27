@@ -237,7 +237,7 @@ $mega-header-height: 3rem;
   position: fixed;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-bottom: 1px solid hsl(0, 0%, 25%);
   z-index: 1;
   box-shadow: -1px 7px 15px -1px rgba(0,0,0,0.61);
@@ -261,7 +261,7 @@ $mega-header-height: 3rem;
 }
 
 $header-height: 4rem;
-.ranks-page{
+.ranks-page, .combo-page{
   color: white;
   header{
     height: $header-height;
@@ -293,23 +293,83 @@ $header-height: 4rem;
   .rank-map{
     padding: 1rem;
   }
-  .ranks{
-    padding: 1rem;
-    .rank-group{
-      font-size: 2rem;
+}
+.ranks{
+  padding: 1rem;
+  .rank-group{
+    font-size: 2rem;
+    @media screen and (max-width: 900px){
+      font-size: 1.5rem;
+      @media screen and (max-width: 650px){
+        font-size: 1rem;
+      }
+    }
+    margin-bottom: 2rem;
+    .title{
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      // justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
       @media screen and (max-width: 900px){
-        font-size: 1.5rem;
+        font-size: 1rem;
         @media screen and (max-width: 650px){
-          font-size: 1rem;
+          font-size: 0.75rem;
         }
       }
-      margin-bottom: 2rem;
-      .title{
+      .num{
+        font-size: 2rem;
+        @media screen and (max-width: 900px){
+          font-size: 1.5rem;
+          @media screen and (max-width: 650px){
+            font-size: 1rem;
+          }
+        }
+        border: 2px solid white;
+        width: 5rem;
+        height: 5rem;
+        @media screen and (max-width: 900px){
+          width: 3rem;
+          height: 3rem;
+        }
         display: flex;
-        gap: 1rem;
+        justify-content: center;
         align-items: center;
-        // justify-content: center;
-        margin-bottom: 1rem;
+        border-radius: 50%;
+      }
+      &.num1{
+        color: gold;
+        font-weight: 500;
+        .num{
+          border-color: gold;
+        }
+      }
+      &.num2{
+        color: silver;
+        font-weight: 500;
+        .num{
+          border-color: silver;
+        }
+      }
+      &.num3{
+        color: #cd7f32;
+        font-weight: 500;
+        .num{
+          border-color: #cd7f32;
+        }
+      }
+    }
+    .rank-countries{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .rank-country{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .country-counter{
         font-size: 1.5rem;
         @media screen and (max-width: 900px){
           font-size: 1rem;
@@ -317,79 +377,95 @@ $header-height: 4rem;
             font-size: 0.75rem;
           }
         }
-        .num{
-          font-size: 2rem;
-          @media screen and (max-width: 900px){
-            font-size: 1.5rem;
-            @media screen and (max-width: 650px){
-              font-size: 1rem;
-            }
-          }
-          border: 2px solid white;
-          width: 5rem;
-          height: 5rem;
-          @media screen and (max-width: 900px){
-            width: 3rem;
-            height: 3rem;
-          }
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 50%;
-        }
-        &.num1{
-          color: gold;
-          font-weight: 500;
-          .num{
-            border-color: gold;
-          }
-        }
-        &.num2{
-          color: silver;
-          font-weight: 500;
-          .num{
-            border-color: silver;
-          }
-        }
-        &.num3{
-          color: #cd7f32;
-          font-weight: 500;
-          .num{
-            border-color: #cd7f32;
-          }
-        }
-      }
-      .rank-countries{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        .rank-country{
-          display: flex;
-          gap: 1rem;
-        }
-        .country-counter{
-          font-size: 1.5rem;
-          @media screen and (max-width: 900px){
-            font-size: 1rem;
-            @media screen and (max-width: 650px){
-              font-size: 0.75rem;
-            }
-          }
-          width: 50vw;
-          margin-left: auto;
-        }
+        width: 50vw;
+        margin-left: auto;
       }
     }
   }
-  .rank-buttons{
+}
+.rank-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  padding-top: 0;
+  button{
+    font-size: 1.5rem;
+    padding: .5rem;
+  }
+}
+
+.combo-container{
+  padding-top: $header-height;
+  .combo-header{
+    height: $header-height;
+    position: fixed;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid hsl(0, 0%, 25%);
+    z-index: 1;
+    box-shadow: -1px 7px 15px -1px rgba(0,0,0,0.61);
+    .combo-tab{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      padding: 1rem 0;
+      cursor: pointer;
+      border-right: 1px solid hsl(0, 0%, 25%);
+      background-color: #151515;
+      &.active{
+        background-color: hsl(0, 0%, 25%);
+      }
+    }
+  }
+  .combo-extra{
+    margin-top: $header-height;
+    padding: 1rem;
+    color: white;
     display: flex;
     justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    label{
+      display: flex;
+      align-items: center;
+      input{
+        zoom: 150%;
+      }
+    }
+  }
+  .combo-selectors{
+    padding: 0 1rem;
+    display: grid;
     gap: 1rem;
-    padding: 1rem;
-    padding-top: 0;
-    button{
-      font-size: 1.5rem;
-      padding: .5rem;
+    >div{
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button{
+        background-color: hsl(300, 55%, 50%);
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        outline: none1;
+        border: none;
+        border-radius: .5em;
+        &:hover{
+          background-color: hsl(300, 55%, 40%);
+        }
+        &:disabled{
+          background-color: hsl(300, 55%, 20%);
+          color: darkgrey;
+          cursor: auto;
+        }
+      }
+      >*{
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
@@ -402,6 +478,12 @@ $header-height: 4rem;
 .simple-counter{
   margin-left: auto;
   margin-right: 3rem;
+}
+.small{
+  font-size: 1.5rem;
+}
+.very-small{
+  font-size: 1rem;
 }
 
 

@@ -1,7 +1,7 @@
 
-export default function Flag({cc}){
+export default function Flag({cc, className}){
     
     return (
-      <span className={`flag-icon flag-icon-${cc}`}></span>
+      <span className={`flag-icon flag-icon-${cc} ${className}`}></span>
     )
 }

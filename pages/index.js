@@ -1,4 +1,4 @@
-import Select from 'react-select'
+import Select from 'react-select';
 import { useState, useEffect, useRef, useContext } from "react";
 import { Context } from '../lib/Context';
 import WorldMap from '../components/WorldMap';
@@ -16,26 +16,9 @@ export default function Home() {
     rankValues, 
     getCCFromTitle,
     getRankFullName,
-    getRank
+    getRank,
+    getComboValues
   } = useContext(Context);
-
-  // useEffect(()=>{
-  //   const comboRanks = {};
-  //   const key1 = "Italy";
-  //   const key2 = "Cape Verde";
-  //   Object.keys(passport).forEach((key3) => {
-  //     if(key1 !== key2 && key1 !== key3 && key2 !== key3){
-  //       const comboName = `${key1} + ${key2} + ${key3}`;
-  //       if(!comboRanks[comboName]){
-  //           console.log(comboName)
-  //           const comboValues = getComboValues(getPass(), [{value: key1}, {value:key2}, {value:key3}]);
-  //           comboRanks[comboName] = getRank(comboName, comboValues, 'overall', 3);
-  //       }
-  //     }
-  //   });
-  //   const res = Object.values(comboRanks).sort((a, b) => (a.rank > b.rank? -1 : 1));
-  //   console.log(res);
-  // },[passport])
 
   const [visitorMode, setVisitorMode] = useState(false);
   useEffect(()=>{
@@ -106,43 +89,6 @@ export default function Home() {
     });
     checkResize();
   },[]);
-
-  const getComboValues = (passports, selectedCountries) => {
-    if(selectedCountries.length === 1){
-      return passports[selectedCountries[0].value];
-    }
-    const comboValues = {};
-    selectedCountries.forEach(({value})=>{
-      const countries = passports[value];
-      Object.values(countries).forEach(country=>{
-        const {title} = country;
-        if(!selectedCountries.map(option=>(option.value)).includes(title)){ //if it's not one of the selected countries
-          if(!comboValues[title]){
-            comboValues[title] = country;
-          }else{
-            comboValues[title] = getBetterCountry(comboValues[title], country);
-          }
-        }
-      })
-    })
-    return comboValues;
-  }
-
-  const getBetterCountry = (c1, c2) => {
-    const visaTypes = ["fom", "vf", "voa", "eta", "vr"];
-    if(c1.visaType !== c2.visaType){
-      const i1 = visaTypes.indexOf(c1.visaType);
-      const i2 = visaTypes.indexOf(c2.visaType);
-      return i1 < i2 ? c1 : c2;
-    }
-    if(c1.visa !== c2.visa){
-      const type = c1.visaType;
-      const i1 = visaPox[type].indexOf(c1.visa);
-      const i2 = visaPox[type].indexOf(c2.visa);
-      return i1 < i2 ? c1 : c2;
-    }
-    return c1;
-  }
 
   const [currentData, setCurrentData] = useState({})
   useEffect(()=>{
